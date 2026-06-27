@@ -1,4 +1,3 @@
-import { ChevronUp } from 'lucide-react';
 import './Homepage.css';
 import frutto from '../assets/frutto.jpg';
 import olio1 from '../assets/olio1.jpg';
