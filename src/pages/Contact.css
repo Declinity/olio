@@ -1,0 +1,154 @@
+.contact-page {
+  background-color: #fdfcf7;
+  color: #333;
+  padding-top: 90px; /* clear the fixed header */
+  padding-bottom: 6rem;
+}
+
+/* Intro */
+.contact-intro {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 3rem 2rem 2.5rem;
+}
+
+.contact-decoration {
+  color: #7b9983;
+  font-size: 1.5rem;
+  letter-spacing: 0.2em;
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+
+.contact-title {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: #2c3e38;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-title .title-dash {
+  font-weight: 300;
+  color: #2c3e38;
+}
+
+.contact-subtitle {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #555;
+}
+
+/* Layout */
+.contact-layout {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem 2rem 0;
+  display: flex;
+  gap: 4rem;
+  align-items: stretch;
+}
+
+.contact-info {
+  flex: 0 0 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.contact-block-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #2c3e38;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e0ddd2;
+}
+
+.contact-address {
+  font-family: var(--font-serif);
+  font-style: normal;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #555;
+}
+
+.contact-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-list li {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: #555;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.contact-label {
+  color: #7b9983;
+  font-weight: 600;
+}
+
+.contact-list a {
+  color: #2c3e38;
+  transition: var(--transition-default);
+}
+
+.contact-list a:hover {
+  color: #7b9983;
+}
+
+/* Map */
+.contact-map {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 420px;
+}
+
+.contact-map iframe {
+  width: 100%;
+  flex: 1;
+  border: 1px solid #e0ddd2;
+  min-height: 380px;
+}
+
+.contact-map-link {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: #7b9983;
+  margin-top: 0.75rem;
+  align-self: flex-end;
+  transition: var(--transition-default);
+}
+
+.contact-map-link:hover {
+  color: #2c3e38;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .contact-layout {
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .contact-info {
+    flex: 1 1 auto;
+  }
+  .contact-map {
+    min-height: 340px;
+  }
+}

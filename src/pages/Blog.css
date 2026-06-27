@@ -1,0 +1,159 @@
+.blog-page {
+  background-color: #fdfcf7;
+  color: #333;
+}
+
+/* Hero — like the homepage hero but shorter, text laid out differently */
+.blog-hero {
+  height: 65vh;
+  min-height: 420px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+    url('../assets/valleditria.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.blog-hero-content {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+}
+
+.blog-hero-title {
+  font-family: var(--font-serif);
+  font-size: 5rem;
+  font-weight: 500;
+  line-height: 1;
+  flex: 0 0 auto;
+}
+
+.blog-hero-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  max-width: 420px;
+  flex: 0 1 420px;
+}
+
+/* Articles */
+.blog-articles {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 2rem 6rem;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4rem 3rem;
+}
+
+.blog-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-card-date {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: #7b9983;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.blog-card-dash {
+  font-style: normal;
+}
+
+.blog-card-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.blog-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.blog-card-image:hover img {
+  transform: scale(1.05);
+}
+
+.blog-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #2c3e38;
+  margin-bottom: 1.25rem;
+  line-height: 1.2;
+}
+
+.blog-card-title a {
+  transition: var(--transition-default);
+}
+
+.blog-card-title a:hover {
+  color: #7b9983;
+}
+
+.blog-card-excerpt {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  line-height: 1.7;
+  text-transform: uppercase;
+  color: #555;
+}
+
+.blog-card-more {
+  color: #7b9983;
+  font-weight: 600;
+  margin-left: 0.25rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  /* Let the hero grow to fit its content and clear the fixed header,
+     instead of forcing a fixed height that clips the title at the top. */
+  .blog-hero {
+    height: auto;
+    min-height: 0;
+    padding: 120px 0 3.5rem;
+  }
+  .blog-hero-content {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  .blog-hero-title {
+    font-size: 3rem;
+  }
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+}

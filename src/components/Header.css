@@ -1,0 +1,314 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.4s ease;
+  background-color: transparent;
+  color: #ffffff;
+  padding: 1.5rem 0;
+}
+
+.header.scrolled {
+  background-color: #ffffff;
+  color: #1a1a1a;
+  padding: 1rem 0;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05); /* subtle border at bottom */
+}
+
+/* Pages without a dark hero behind the header (everything but the homepage):
+   keep the transparent background but use dark text while at the top. */
+.header.dark-top:not(.scrolled) {
+  color: #1a1a1a;
+}
+
+.header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-logo .logo-image {
+  height: 40px;
+  width: auto;
+  transition: filter 0.3s ease;
+}
+
+/* If vite logo needs to be white on transparent bg, we could use a filter or CSS trick. 
+   For now, we'll just let it be its default colors unless scrolled, in which case we could invert if it was pure white. 
+   Since vite logo is colorful, we'll just leave it as is or add brightness filters if necessary. */
+.header:not(.scrolled) .logo-image {
+  /* Attempt to make it mostly white-ish if it's colorful, but it's a temp logo anyway */
+  filter: brightness(0) invert(1);
+}
+
+.header.scrolled .logo-image,
+.header.dark-top:not(.scrolled) .logo-image {
+  filter: none;
+}
+
+.header-nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: opacity 0.2s ease;
+  position: relative;
+}
+
+.nav-link:hover {
+  opacity: 0.7;
+}
+
+.nav-chevron {
+  opacity: 0.7;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.action-button {
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease;
+}
+
+.action-button:hover {
+  opacity: 0.7;
+}
+
+.lang-selector {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* Hamburger toggle — hidden on desktop, shown on mobile */
+.menu-toggle {
+  display: none;
+}
+/* Dropdown styles */
+.nav-item {
+  position: relative;
+  list-style-type: none;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: -20px; /* Slight offset to align nicely with text */
+  transform: translateY(10px);
+  background-color: #ffffff;
+  min-width: 180px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eaeaea;
+  padding: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.has-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-link {
+  display: block;
+  padding: 1rem 1.5rem;
+  color: #333;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-style: italic;
+  text-align: left;
+  border-bottom: 1px solid #333;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-link:last-child {
+  border-bottom: none;
+}
+
+.dropdown-link:hover {
+  background-color: #f9f9f9;
+  color: #000;
+}
+
+/* ===== Mobile slide-in menu ===== */
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1100;
+}
+
+.mobile-menu-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 320px;
+  max-width: 85vw;
+  background-color: #fdfcf7;
+  color: #1a1a1a;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+  transform: translateX(100%);
+  transition: transform 0.35s ease;
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+.mobile-menu-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e0ddd2;
+}
+
+.mobile-menu-heading {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #2c3e38;
+}
+
+.mobile-menu-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2c3e38;
+  transition: opacity 0.2s ease;
+}
+
+.mobile-menu-close:hover {
+  opacity: 0.6;
+}
+
+.mobile-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0;
+}
+
+.mobile-nav-item {
+  border-bottom: 1px solid #ece9df;
+}
+
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1.1rem 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #2c3e38;
+  text-align: left;
+  background: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.mobile-nav-link:hover {
+  background-color: #f1efe7;
+  color: #7b9983;
+}
+
+.mobile-nav-chevron {
+  transition: transform 0.3s ease;
+  flex: 0 0 auto;
+}
+
+.mobile-nav-chevron.rotated {
+  transform: rotate(180deg);
+}
+
+/* Accordion submenu */
+.mobile-submenu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  background-color: #f4f2ea;
+  transition: max-height 0.3s ease;
+}
+
+.mobile-submenu.open {
+  max-height: 300px;
+}
+
+.mobile-submenu-link {
+  display: block;
+  padding: 0.85rem 1.5rem 0.85rem 2.5rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: #555;
+  transition: color 0.2s ease;
+}
+
+.mobile-submenu-link:hover {
+  color: #7b9983;
+}
+
+/* ===== Responsive: switch to mobile layout ===== */
+@media (max-width: 900px) {
+  .header-nav {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .header-actions {
+    gap: 1.25rem;
+  }
+}
