@@ -9,7 +9,7 @@ export default function Homepage() {
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-content">
-          <h1>Terra di Pietra</h1>
+          <h1>Terra di Pietre</h1>
           <p>Olio buonissimoooo di ottima qualita</p>
         </div>
       </section>

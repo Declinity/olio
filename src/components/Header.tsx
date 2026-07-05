@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Search, User, ShoppingBag, ChevronDown, Menu, X } from 'lucide-react';
-import viteLogo from '../assets/vite.svg';
+import logo from '../assets/logo.jpg';
 import './Header.css';
 
 type NavChild = { label: string; to: string };
@@ -18,10 +18,8 @@ const navItems: NavItem[] = [
     ],
   },
   { label: 'GALLERIA', to: '/gallery' },
-  { label: 'BLOG', to: '/blog' },
-  { label: 'EVENTI', to: '#succede' },
+  { label: 'EVENTI', to: '/blog' },
   { label: 'CONTATTI', to: '/contact' },
-  { label: 'BOTTEGA ONLINE', to: '/products' },
 ];
 
 // Internal routes use react-router Link; hash anchors stay plain <a>.
@@ -78,7 +76,7 @@ export default function Header() {
           {/* Left: Logo */}
           <div className="header-logo">
             <Link to="/">
-              <img src={viteLogo} alt="Logo" className="logo-image" />
+              <img src={logo} alt="Olio Roi" className="logo-image" />
             </Link>
           </div>
 
@@ -99,16 +97,10 @@ export default function Header() {
                 <Link to="/gallery" className="nav-link">GALLERIA</Link>
               </li>
               <li className="nav-item">
-                <Link to="/blog" className="nav-link">BLOG</Link>
-              </li>
-              <li className="nav-item">
-                <a href="#succede" className="nav-link">EVENTI</a>
+                <Link to="/blog" className="nav-link">EVENTI</Link>
               </li>
               <li className="nav-item">
                 <Link to="/contact" className="nav-link">CONTATTI</Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/products" className="nav-link">BOTTEGA ONLINE</Link>
               </li>
             </ul>
           </nav>

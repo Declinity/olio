@@ -1,5 +1,5 @@
 import './Products.css';
-import heroLineup from '../assets/hero.png';
+import heroLineup from '../assets/logo.jpg';
 import olio1 from '../assets/olio1.jpg';
 import olio2 from '../assets/olio2.jpg';
 
@@ -81,7 +81,7 @@ export default function Products() {
       {/* Banner */}
       <section className="bottega-banner">
         <div className="banner-image">
-          <img src={heroLineup} alt="Linea di prodotti Olio Roi" />
+          <img src={heroLineup} alt="Olio Roi" />
         </div>
         <div className="banner-info">
           <h1 className="banner-title">Bottega Online</h1>
@@ -89,10 +89,28 @@ export default function Products() {
             Ordinare online i prodotti Olio Roi è facile e veloce. Scegli i tuoi preferiti o
             acquista le novità direttamente dal tuo salotto, li riceverai a casa in pochissimo tempo.
           </p>
-          <p className="banner-notice">
-            ATTENZIONE!!! PER UNA SPEDIZIONE ALL'ESTERO, PUOI CONTATTARCI A INFO@OLIOROI.COM
-            OPPURE TRAMITE TELEFONO +39 0184 408 004
-          </p>
+        </div>
+      </section>
+
+      {/* Order banner */}
+      <section className="order-banner">
+        <div className="order-banner-content">
+          <h2 className="order-banner-title">Come ordinare</h2>
+          <div className="order-banner-info">
+            <p className="order-banner-text">
+              Per effettuare un ordine, scrivici un messaggio su WhatsApp al numero
+              <strong> +39 347 193 3553</strong>. Indicaci i prodotti e le quantità che desideri:
+              ti risponderemo il prima possibile per confermare disponibilità, prezzo e spedizione.
+            </p>
+            <a
+              className="order-banner-btn"
+              href="https://wa.me/393471933553"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              SCRIVICI SU WHATSAPP
+            </a>
+          </div>
         </div>
       </section>
 
@@ -137,7 +155,6 @@ export default function Products() {
                 <h2 className="product-card-name">{product.name}</h2>
                 <p className="product-card-desc">{product.desc}</p>
                 <p className="product-card-price">{product.price}</p>
-                <button className="product-card-btn">AGGIUNGI AL CARRELLO</button>
               </article>
             ))}
           </div>

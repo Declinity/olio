@@ -33,22 +33,11 @@
 }
 
 .header-logo .logo-image {
-  height: 40px;
-  width: auto;
-  transition: filter 0.3s ease;
-}
-
-/* If vite logo needs to be white on transparent bg, we could use a filter or CSS trick. 
-   For now, we'll just let it be its default colors unless scrolled, in which case we could invert if it was pure white. 
-   Since vite logo is colorful, we'll just leave it as is or add brightness filters if necessary. */
-.header:not(.scrolled) .logo-image {
-  /* Attempt to make it mostly white-ish if it's colorful, but it's a temp logo anyway */
-  filter: brightness(0) invert(1);
-}
-
-.header.scrolled .logo-image,
-.header.dark-top:not(.scrolled) .logo-image {
-  filter: none;
+  height: 52px;
+  width: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
 }
 
 .header-nav {

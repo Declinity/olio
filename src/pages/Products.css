@@ -47,12 +47,66 @@
   margin-bottom: 1.5rem;
 }
 
-.banner-notice {
+/* Order banner (full-width green CTA, styled like the homepage "Shopping" section) */
+.order-banner {
+  background-color: #7b9983;
+  padding: 3.5rem 2rem;
+  margin-bottom: 1rem;
+}
+
+.order-banner-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.order-banner-title {
   font-family: var(--font-serif);
-  font-size: 1rem;
-  line-height: 1.6;
+  font-style: italic;
   font-weight: 600;
-  color: #5c4a2e;
+  font-size: 2.5rem;
+  color: #2c3e38;
+  line-height: 1.1;
+  flex: 0 0 auto;
+}
+
+.order-banner-info {
+  flex: 1;
+  max-width: 640px;
+}
+
+.order-banner-text {
+  font-family: var(--font-sans);
+  color: #fdfcf7;
+  line-height: 1.7;
+  margin-bottom: 1.75rem;
+}
+
+.order-banner-text strong {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.order-banner-btn {
+  display: inline-block;
+  background-color: transparent;
+  color: #fdfcf7;
+  border: 1px solid #fdfcf7;
+  padding: 0.9rem 1.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition-default);
+}
+
+.order-banner-btn:hover {
+  background-color: #fdfcf7;
+  color: #7b9983;
 }
 
 /* Shop layout */
@@ -198,30 +252,16 @@
   margin-bottom: 1.25rem;
 }
 
-.product-card-btn {
-  margin-top: auto;
-  background-color: transparent;
-  color: #7b9983;
-  border: 1px solid #7b9983;
-  padding: 0.7rem 1.4rem;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: var(--transition-default);
-}
-
-.product-card-btn:hover {
-  background-color: #7b9983;
-  color: #fff;
-}
-
 /* Responsive */
 @media (max-width: 900px) {
   .bottega-banner {
     flex-direction: column;
     gap: 2rem;
+  }
+  .order-banner-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
   }
   .shop-layout {
     flex-direction: column;
