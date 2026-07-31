@@ -1,57 +1,68 @@
 .products-page {
   background-color: #fdfcf7;
   color: #333;
-  padding-top: 90px; /* clear the fixed header */
 }
 
-/* Banner */
-.bottega-banner {
+/* On desktop the hero + green "Come ordinare" banner together fill the full
+   viewport height, so no next-section cream peeks above the fold. */
+@media (min-width: 901px) {
+  .bottega-top {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .bottega-hero {
+    flex: 1 1 auto;
+    height: auto;
+    min-height: 0;
+  }
+}
+
+/* Hero — full-bleed image with the text overlaid, like the blog hero */
+.bottega-hero {
+  height: 65vh;
+  min-height: 420px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+    url('../assets/valleditria.jpg');
+  background-size: cover;
+  background-position: center;
   display: flex;
   align-items: center;
-  gap: 4rem;
+  color: #fff;
+}
+
+.bottega-hero-content {
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 3rem 2rem;
-}
-
-.banner-image {
-  flex: 0 0 45%;
-  display: flex;
-  justify-content: center;
-}
-
-.banner-image img {
   width: 100%;
-  max-width: 520px;
-  height: auto;
-  object-fit: contain;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
 }
 
-.banner-info {
-  flex: 1;
-}
-
-.banner-title {
+.bottega-hero-title {
   font-family: var(--font-serif);
-  font-size: 2.5rem;
+  font-size: 5rem;
   font-weight: 500;
-  color: #2c3e38;
-  margin-bottom: 1.5rem;
+  line-height: 1;
+  flex: 0 0 auto;
 }
 
-.banner-text {
+.bottega-hero-text {
   font-family: var(--font-serif);
-  font-size: 1rem;
+  font-style: italic;
+  font-size: 1.15rem;
   line-height: 1.7;
-  color: #555;
-  margin-bottom: 1.5rem;
+  max-width: 480px;
+  flex: 0 1 480px;
 }
 
 /* Order banner (full-width green CTA, styled like the homepage "Shopping" section) */
 .order-banner {
   background-color: #7b9983;
   padding: 3.5rem 2rem;
-  margin-bottom: 1rem;
 }
 
 .order-banner-content {
@@ -254,9 +265,20 @@
 
 /* Responsive */
 @media (max-width: 900px) {
-  .bottega-banner {
+  /* Let the hero grow to fit its content and clear the fixed header. */
+  .bottega-hero {
+    height: auto;
+    min-height: 0;
+    padding: 120px 0 3.5rem;
+  }
+  .bottega-hero-content {
     flex-direction: column;
-    gap: 2rem;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  .bottega-hero-title {
+    font-size: 3rem;
   }
   .order-banner-content {
     flex-direction: column;

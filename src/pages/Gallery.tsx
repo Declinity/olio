@@ -5,18 +5,16 @@ import valleditria from '../assets/valleditria.jpg';
 import frutto from '../assets/frutto.jpg';
 import olio1 from '../assets/olio1.jpg';
 import olio2 from '../assets/olio2.jpg';
+import { useLang } from '../i18n/LanguageContext';
 
-const images = [
-  { src: valleditria, caption: 'La Valle Argentina' },
-  { src: frutto, caption: 'Il frutto dell\'olivo' },
-  { src: hero, caption: 'La nostra linea di prodotti' },
-  { src: olio1, caption: 'Monocultivar Taggiasca' },
-  { src: olio2, caption: 'Mosto 5L' },
-];
+// Index-aligned with translations.gallery.captions.
+const imageSources = [valleditria, frutto, hero, olio1, olio2];
 
 export default function Gallery() {
+  const { t } = useLang();
   const [activeIndex, setActiveIndex] = useState(0);
-  const active = images[activeIndex];
+  const activeSrc = imageSources[activeIndex];
+  const activeCaption = t.gallery.captions[activeIndex];
 
   return (
     <div className="gallery-page">
@@ -24,33 +22,29 @@ export default function Gallery() {
       <section className="gallery-intro">
         <div className="gallery-decoration">~ • ~</div>
         <h1 className="gallery-title">
-          <span className="title-dash">—</span> Galleria <span className="title-dash">—</span>
+          <span className="title-dash">—</span> {t.gallery.title} <span className="title-dash">—</span>
         </h1>
-        <p className="gallery-subtitle">
-          Queste sono le nostre immagini: dai paesaggi della Valle Argentina ai frutti dei nostri
-          ulivi, fino ai prodotti che nascono dalla nostra passione. Sfoglia la galleria e lasciati
-          raccontare la storia di Roi.
-        </p>
+        <p className="gallery-subtitle">{t.gallery.subtitle}</p>
       </section>
 
       {/* Main viewer */}
       <section className="gallery-viewer">
         <div className="gallery-main-image">
-          <img src={active.src} alt={active.caption} key={active.src} />
+          <img src={activeSrc} alt={activeCaption} key={activeSrc} />
         </div>
-        <p className="gallery-caption">{active.caption}</p>
+        <p className="gallery-caption">{activeCaption}</p>
       </section>
 
       {/* Thumbnails */}
       <section className="gallery-thumbs">
-        {images.map((image, index) => (
+        {imageSources.map((src, index) => (
           <button
-            key={image.src}
+            key={src}
             className={`gallery-thumb ${index === activeIndex ? 'active' : ''}`}
             onClick={() => setActiveIndex(index)}
-            aria-label={`Mostra ${image.caption}`}
+            aria-label={`${t.gallery.showPrefix} ${t.gallery.captions[index]}`}
           >
-            <img src={image.src} alt={image.caption} />
+            <img src={src} alt={t.gallery.captions[index]} />
           </button>
         ))}
       </section>

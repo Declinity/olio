@@ -1,16 +1,22 @@
 import './Homepage.css';
-import frutto from '../assets/frutto.jpg';
 import olio1 from '../assets/olio1.jpg';
 import olio2 from '../assets/olio2.jpg';
+import olio3 from '../assets/storia.png';
+import { useLang } from '../i18n/LanguageContext';
+
+const productImages = [olio1, olio2];
 
 export default function Homepage() {
+  const { t } = useLang();
+  const h = t.home;
+
   return (
     <div className="homepage">
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-content">
-          <h1>Terra di Pietre</h1>
-          <p>Olio buonissimoooo di ottima qualita</p>
+          <h1>{h.heroTitle}</h1>
+          <p>{h.heroSubtitle}</p>
         </div>
       </section>
 
@@ -18,7 +24,7 @@ export default function Homepage() {
       <section className="products-section" id="prodotti">
         <div className="section-header">
           <h2 className="section-title">
-            <span className="title-dash">—</span> La Nostra Storia <span className="title-dash">—</span>
+            <span className="title-dash">—</span> {h.storyTitle} <span className="title-dash">—</span>
           </h2>
         </div>
 
@@ -26,44 +32,33 @@ export default function Homepage() {
           {/* Left Column */}
           <div className="features-column">
             <div className="feature-item">
-              <h3 className="feature-title">Le origini</h3>
-              <p className="feature-text">
-                Tanto tempo fa un alieno scese sulla nostra valle e ci offri un bicchiere di olio.
-                L'olio era buonissimo e ci faceva sentire felici e leggeri.
-                Cosi decidemmo di dedicare tutta la nostra vita a coltivare olio.
-              </p>
+              <h3 className="feature-title">{h.features[0].title}</h3>
+              <p className="feature-text">{h.features[0].text}</p>
               <div className="feature-dash"></div>
             </div>
 
             <div className="feature-item">
-              <h3 className="feature-title">Il frutto</h3>
-              <p className="feature-text">
-                Le olive portateci dagli alieni sono le stesse che mangio' l'antico imperatore Giulio Cesare.
-                Dopo aver mangiato un uva, l'imperatore sconfisse 100 leoni a mani nude e conquisto' tutta l'Argentina.
-              </p>
+              <h3 className="feature-title">{h.features[1].title}</h3>
+              <p className="feature-text">{h.features[1].text}</p>
             </div>
           </div>
 
           {/* Center Column (Image) */}
           <div className="image-column">
-            <img src={frutto} alt="Frutto dell'olivo" className="illustration-image" />
+            <img src={olio3} alt={h.storyTitle} className="illustration-image" />
           </div>
 
           {/* Right Column */}
           <div className="features-column">
             <div className="feature-item">
-              <h3 className="feature-title">La produzione</h3>
-              <p className="feature-text">
-                La produzione di olio avviene nel nostro sottoterrato. Abbiamo 90 indiani sottopagati che lavorono giorno e notte per produrre olio e per motivarli ogni anno l'indiano piu' redditizio viene liberato.
-              </p>
+              <h3 className="feature-title">{h.features[2].title}</h3>
+              <p className="feature-text">{h.features[2].text}</p>
               <div className="feature-dash"></div>
             </div>
 
             <div className="feature-item">
-              <h3 className="feature-title">La pianta</h3>
-              <p className="feature-text">
-                La pianta ha effetti stupefacenti incredibili, si dice che viene digerito prima che si trasformi in oliva, apparira un cavalletto gigante e ti porgera' la mano per farti salire in cielo.
-              </p>
+              <h3 className="feature-title">{h.features[3].title}</h3>
+              <p className="feature-text">{h.features[3].text}</p>
             </div>
           </div>
         </div>
@@ -83,44 +78,33 @@ export default function Homepage() {
         <div className="nso-content">
           <div className="nso-decoration">~ • ~</div>
           <h2 className="section-title">
-            <span className="title-dash">—</span> Prodotti in evidenza <span className="title-dash">—</span>
+            <span className="title-dash">—</span> {h.featuredTitle} <span className="title-dash">—</span>
           </h2>
 
           <div className="featured-products-container">
             {/* Product 1 */}
             <div className="featured-product">
               <div className="product-image-container">
-                <img src={olio1} alt="Monocultivar Taggiasca 1L" className="product-img bottle-img" />
+                <img src={productImages[0]} alt={h.products[0].name} className="product-img bottle-img" />
               </div>
               <div className="product-info">
-                <h3 className="product-name">Monocultivar Taggiasca<br />1L</h3>
-                <p className="product-subtitle">Olio Extravergine di oliva 100%<br />Italiano</p>
-                <p className="product-desc">
-                  E' un olio franto da olive scelte di<br />
-                  Cultivar 100% Taggiasca.<br />
-                  Caratteristico è il gusto delicato,<br />
-                  tipico della cultivar Taggiasca.
-                </p>
-                <button className="store-btn">VAI ALLO STORE</button>
+                <h3 className="product-name">{h.products[0].name}</h3>
+                <p className="product-subtitle">{h.products[0].subtitle}</p>
+                <p className="product-desc">{h.products[0].desc}</p>
+                <button className="store-btn">{h.storeBtn}</button>
               </div>
             </div>
 
             {/* Product 2 */}
             <div className="featured-product">
               <div className="product-image-container">
-                <img src={olio2} alt="Mosto 5L" className="product-img tin-img" />
+                <img src={productImages[1]} alt={h.products[1].name} className="product-img tin-img" />
               </div>
               <div className="product-info">
-                <h3 className="product-name">Mosto 5L</h3>
-                <p className="product-subtitle">Olio extravergine di oliva 100%<br />Italiano</p>
-                <p className="product-desc">
-                  E' un olio ottenuto dalla prima<br />
-                  spremitura a freddo. Quest'olio ha un<br />
-                  colore giallo dorato dai riflessi verdi<br />
-                  e al naso ha note più pronunciate di<br />
-                  carciofo e oliva fresca.
-                </p>
-                <button className="store-btn">VAI ALLO STORE</button>
+                <h3 className="product-name">{h.products[1].name}</h3>
+                <p className="product-subtitle">{h.products[1].subtitle}</p>
+                <p className="product-desc">{h.products[1].desc}</p>
+                <button className="store-btn">{h.storeBtn}</button>
               </div>
             </div>
           </div>
@@ -130,17 +114,12 @@ export default function Homepage() {
       {/* Shopping CTA Section */}
       <section className="shopping-cta-section">
         <div className="shopping-cta-content">
-          <h2 className="shopping-cta-title">Shopping<br />is shopping</h2>
+          <h2 className="shopping-cta-title">{h.ctaTitleLine1}<br />{h.ctaTitleLine2}</h2>
           <div className="shopping-cta-info">
-            <p className="shopping-cta-text">
-              Cerchi altro?  Puoi
-              scegliere la modalità online e attendere comodamente la consegna a casa tua, o
-              recarti personalmente in uno dei nostri store in cui sarai accolto e consigliato
-              sugli acquisti e sulle ultime novità.
-            </p>
+            <p className="shopping-cta-text">{h.ctaText}</p>
             <div className="shopping-cta-buttons">
-              <button className="cta-btn">VAI ALLO STORE ONLINE</button>
-              <button className="cta-btn">CONTATTACI</button>
+              <button className="cta-btn">{h.ctaStoreBtn}</button>
+              <button className="cta-btn">{h.ctaContactBtn}</button>
             </div>
           </div>
         </div>
@@ -148,59 +127,21 @@ export default function Homepage() {
 
       <div className="section-divider"></div>
 
-      {/* Succede da Roi Section */}
+      {/* Why choose us Section */}
       <section className="succede-section" id="succede">
         <div className="section-header">
           <h2 className="section-title">
-            <span className="title-dash">—</span> Le nostre notizie <span className="title-dash">—</span>
+            <span className="title-dash">—</span> {h.whyTitle} <span className="title-dash">—</span>
           </h2>
         </div>
 
         <div className="succede-grid">
-          {/* Post 1 */}
-          <div className="succede-card">
-            <span className="succede-category">Non categorizzato</span>
-            <h3 className="succede-title">Bistrot dell'Ulivo<br />2022</h3>
-            <p className="succede-text">
-              Finalmente tre anni dopo l'ultima edizione, sabato 9<br />
-              luglio (Badalucco, Regione Ortai,<br />
-              ore 18:00) torna il rituale del<br />
-              Bistrot dell'Ulivo (Spremitura a<br />
-              [...]
-            </p>
-          </div>
-
-          {/* Post 2 */}
-          <div className="succede-card">
-            <span className="succede-category">Eventi</span>
-            <h3 className="succede-title">Bistrot dell'Ulivo<br />2019</h3>
-            <p className="succede-text">
-              10 anni di Bistrot dell'Ulivo,<br />
-              sempre con la stessa passione per<br />
-              la bellezza e la bontà della valle<br />
-              Argentina! [...]
-            </p>
-          </div>
-
-          {/* Post 3 */}
-          <div className="succede-card">
-            <span className="succede-category">News</span>
-            <h3 className="succede-title">Miglior Innovazione<br />SIAL</h3>
-            <p className="succede-text">
-              Bere di qualità puntando su<br />
-              innovazione ed eccellenze<br />
-              agroalimentari del territorio<br />
-              italiano. È questo il segreto di<br />
-              Taggiasco Extravirgin, [...]
-            </p>
-          </div>
-
-          {/* View All Link */}
-          <div className="succede-view-all">
-            <a href="#tutte-iniziative" className="view-all-link">
-              Vedi tutte le nostre<br />iniziative <span className="view-all-arrow">→</span>
-            </a>
-          </div>
+          {h.cards.map((card) => (
+            <div className="succede-card" key={card.title}>
+              <h3 className="succede-title">{card.title}</h3>
+              <p className="succede-text">{card.text}</p>
+            </div>
+          ))}
         </div>
       </section>
     </div>

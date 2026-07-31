@@ -432,6 +432,24 @@
   text-align: left;
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+/* Vertical divider between cards (skips the first), fading at both ends. */
+.succede-card:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  left: -1rem; /* centred in the 2rem grid gap */
+  top: 8%;
+  height: 84%;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(123, 153, 131, 0.55) 20%,
+    rgba(123, 153, 131, 0.55) 80%,
+    transparent
+  );
 }
 
 .succede-category {
@@ -495,5 +513,19 @@
   }
   .succede-view-all {
     margin-top: 1rem;
+  }
+  /* Stacked layout: turn the divider horizontal, above each card. */
+  .succede-card:not(:first-child)::before {
+    left: 8%;
+    top: -1.5rem; /* centred in the 3rem column gap */
+    width: 84%;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(123, 153, 131, 0.55) 20%,
+      rgba(123, 153, 131, 0.55) 80%,
+      transparent
+    );
   }
 }

@@ -1,26 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Search, User, ShoppingBag, ChevronDown, Menu, X } from 'lucide-react';
-import logo from '../assets/logo.jpg';
+import { ChevronDown, Menu, X } from 'lucide-react';
+import logo from '../assets/logo_olio.png';
+import { useLang } from '../i18n/LanguageContext';
 import './Header.css';
 
 type NavChild = { label: string; to: string };
-type NavItem = { label: string; to: string; children?: NavChild[] };
-
-const navItems: NavItem[] = [
-  {
-    label: 'PRODOTTI',
-    to: '/products',
-    children: [
-      { label: 'Tutti i Prodotti', to: '/products' },
-      { label: 'Olio', to: '/products' },
-      { label: 'Olive', to: '/products' },
-    ],
-  },
-  { label: 'GALLERIA', to: '/gallery' },
-  { label: 'EVENTI', to: '/blog' },
-  { label: 'CONTATTI', to: '/contact' },
-];
+type NavItem = { id: string; label: string; to: string; children?: NavChild[] };
 
 // Internal routes use react-router Link; hash anchors stay plain <a>.
 function NavTo({ to, className, children, onClick }: {
@@ -40,10 +26,26 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const { pathname } = useLocation();
+  const { lang, toggle, t } = useLang();
+
+  const navItems: NavItem[] = [
+    {
+      id: 'prodotti',
+      label: t.nav.prodotti,
+      to: '/products',
+      children: [
+        { label: t.nav.allProducts, to: '/products' },
+        { label: t.nav.oil500, to: '/products' },
+        { label: t.nav.oil1l, to: '/products' },
+      ],
+    },
+    { id: 'galleria', label: t.nav.galleria, to: '/gallery' },
+    { id: 'contatti', label: t.nav.contatti, to: '/contact' },
+  ];
 
   // Pages with a dark hero image behind the transparent header can keep white
   // text at the top; other pages need dark text so it stays readable.
-  const darkHeroRoutes = ['/', '/blog'];
+  const darkHeroRoutes = ['/', '/blog', '/products'];
   const hasDarkHero = darkHeroRoutes.includes(pathname);
 
   useEffect(() => {
@@ -85,42 +87,36 @@ export default function Header() {
             <ul className="nav-list">
               <li className="nav-item has-dropdown">
                 <Link to="/products" className="nav-link">
-                  PRODOTTI <ChevronDown size={14} className="nav-chevron" />
+                  {t.nav.prodotti} <ChevronDown size={14} className="nav-chevron" />
                 </Link>
                 <div className="dropdown-menu">
-                  <Link to="/products" className="dropdown-link">Tutti i Prodotti</Link>
-                  <Link to="/products" className="dropdown-link">Olio</Link>
-                  <Link to="/products" className="dropdown-link">Olive</Link>
+                  <Link to="/products" className="dropdown-link">{t.nav.allProducts}</Link>
+                  <Link to="/products" className="dropdown-link">{t.nav.oil500}</Link>
+                  <Link to="/products" className="dropdown-link">{t.nav.oil1l}</Link>
                 </div>
               </li>
               <li className="nav-item">
-                <Link to="/gallery" className="nav-link">GALLERIA</Link>
+                <Link to="/gallery" className="nav-link">{t.nav.galleria}</Link>
               </li>
               <li className="nav-item">
-                <Link to="/blog" className="nav-link">EVENTI</Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/contact" className="nav-link">CONTATTI</Link>
+                <Link to="/contact" className="nav-link">{t.nav.contatti}</Link>
               </li>
             </ul>
           </nav>
 
-          {/* Right: Icons */}
+          {/* Right: language toggle + mobile menu */}
           <div className="header-actions">
-            <button className="action-button lang-selector">IT</button>
-            <button className="action-button">
-              <Search size={20} />
-            </button>
-            <button className="action-button">
-              <User size={20} />
-            </button>
-            <button className="action-button">
-              <ShoppingBag size={20} />
+            <button
+              className="action-button lang-selector"
+              onClick={toggle}
+              aria-label={lang === 'it' ? 'Switch to English' : 'Passa all’italiano'}
+            >
+              {lang.toUpperCase()}
             </button>
             <button
               className="action-button menu-toggle"
               onClick={() => setIsMenuOpen(true)}
-              aria-label="Apri il menu"
+              aria-label={t.nav.openMenu}
               aria-expanded={isMenuOpen}
             >
               <Menu size={22} />
@@ -136,11 +132,11 @@ export default function Header() {
       />
       <aside className={`mobile-menu ${isMenuOpen ? 'open' : ''}`} aria-hidden={!isMenuOpen}>
         <div className="mobile-menu-top">
-          <span className="mobile-menu-heading">Menu</span>
+          <span className="mobile-menu-heading">{t.nav.menu}</span>
           <button
             className="mobile-menu-close"
             onClick={() => setIsMenuOpen(false)}
-            aria-label="Chiudi il menu"
+            aria-label={t.nav.closeMenu}
           >
             <X size={24} />
           </button>
@@ -149,23 +145,23 @@ export default function Header() {
         <nav className="mobile-nav">
           <ul className="mobile-nav-list">
             {navItems.map((item) => (
-              <li className="mobile-nav-item" key={item.label}>
+              <li className="mobile-nav-item" key={item.id}>
                 {item.children ? (
                   <>
                     <button
                       className="mobile-nav-link mobile-nav-toggle"
                       onClick={() =>
-                        setOpenSubmenu(openSubmenu === item.label ? null : item.label)
+                        setOpenSubmenu(openSubmenu === item.id ? null : item.id)
                       }
-                      aria-expanded={openSubmenu === item.label}
+                      aria-expanded={openSubmenu === item.id}
                     >
                       {item.label}
                       <ChevronDown
                         size={16}
-                        className={`mobile-nav-chevron ${openSubmenu === item.label ? 'rotated' : ''}`}
+                        className={`mobile-nav-chevron ${openSubmenu === item.id ? 'rotated' : ''}`}
                       />
                     </button>
-                    <ul className={`mobile-submenu ${openSubmenu === item.label ? 'open' : ''}`}>
+                    <ul className={`mobile-submenu ${openSubmenu === item.id ? 'open' : ''}`}>
                       {item.children.map((child) => (
                         <li key={child.label}>
                           <NavTo
